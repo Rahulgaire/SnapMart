@@ -136,8 +136,3 @@ npm run dev
 
 - **Name:** Rahul Gaire  
 - **Email:** gairerahul334@gmail.com  
-
----
-## 📄 License
-
-This project is licensed under the **MIT License**.
