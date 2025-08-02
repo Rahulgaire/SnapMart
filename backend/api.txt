@@ -1,0 +1,34 @@
+let user ={
+    get:"http://localhost:5000/auth/user/profile",
+    post:"http://localhost:5000/auth/user/login",
+    post:"http://localhost:5000/auth/user/register",
+    post:"http://localhost:5000/auth/user/logout",
+    post:"http://localhost:5000/auth/user/verify-otp",
+}
+
+let userProfile = {
+    get:"http://localhost:5000/auth/user/profile",
+    patch:"http://localhost:5000/auth/user/profile",
+    delete:"http://localhost:5000/auth/user/profile/:id",
+}
+
+let product = {
+    get:"http://localhost:5000/api/products",
+    get:"http://localhost:5000/api/products/:id",   //single product
+    put:"http://localhost:5000/api/products/:id",
+    delete:"http://localhost:5000/api/products/:id",
+    post:"http://localhost:5000/api/products",
+}
+
+let cart = [
+    post:"http://localhost:5000/api/cart/add",  
+    post:"http://localhost:5000/api/cart/remove",  
+    post:"http://localhost:5000/api/cart/update",  
+    get:"http://localhost:5000/api/cart"
+]
+
+let productComments = {
+    post:"http://localhost:5000/api/comments/",
+    get:"http://localhost:5000/api/comments/:productId",
+    delete:"http://localhost:5000/api/comments/:commentId"
+}

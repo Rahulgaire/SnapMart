@@ -1,0 +1,155 @@
+const User = require("../model/user.model");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const { sendOtp } = require("../utils/otp");
+
+const register = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+      return res.status(400).send("Please provide all details");
+    }
+
+    const existedUser = await User.findOne({ email });
+    if (existedUser) {
+      return res.status(400).send("User already exists");
+    }
+
+    const otp = await sendOtp(email);
+
+    if (otp === -1) {
+      return res.status(500).send("Failed to send OTP");
+    }
+    const hashPassword = await bcrypt.hash(password, 10);
+
+    const user = new User({
+      name,
+      email,
+      password: hashPassword,
+      otp: otp,
+      isVerified: false,
+    });
+
+    const savedUser = await user.save();
+
+    return res.status(201).json({
+      message: "User created successfully",
+      user: {
+        id: savedUser._id,
+        name: savedUser.name,
+        email: savedUser.email,
+      },
+    });
+    sendOtp(req, res);
+  } catch (error) {
+    console.error("Signup Error:", error.message);
+    return res.status(500).send("Internal Server Error");
+  }
+};
+
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).send("Please provide all details");
+    }
+
+    const existedUser = await User.findOne({ email });
+
+    // BUG FIX: This check should be before bcrypt.compare
+    if (!existedUser) {
+      return res.status(400).send("Email is invalid");
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      existedUser.password
+    );
+    if (!isPasswordCorrect) {
+      return res.status(400).send("Password is invalid");
+    }
+
+    const payload = {
+      id: existedUser._id,
+      role: existedUser.role,
+    };
+
+    const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    }); // optional expiry
+    console.log(jwtToken);
+
+    // Send cookie with httpOnly flag
+    return res
+      .cookie("token", jwtToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production", // secure in production only
+        sameSite: "strict",
+        maxAge: 24 * 60 * 60 * 1000, // 1 day
+      })
+      .status(200)
+      .send("User logged in successfully");
+  } catch (error) {
+    console.error("Login Error:", error.message);
+    return res.status(500).send("Internal Server Error");
+  }
+};
+
+const logout = (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV === "production",
+  });
+  res.status(200).send("User logged out successfully");
+};
+
+const verifyOtp = async (req, res) => {
+  try {
+    const { email, otpCode } = req.body;
+
+    if (!email || !otpCode) {
+      return res.status(400).send("Please provide email and OTP");
+    }
+
+    const existedUser = await User.findOne({ email });
+    if (!existedUser) {
+      return res.status(400).send("Email is invalid");
+    }
+
+    if (existedUser.otp !== otpCode) {
+      return res.status(400).send("Invalid OTP");
+    }
+
+    // Clear the OTP after successful verification
+    existedUser.otp = null;
+    await existedUser.save();
+
+    const payload = { id: existedUser._id, role: existedUser.role };
+    const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+
+    return res
+      .cookie("token", jwtToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 24 * 60 * 60 * 1000,
+      })
+      .status(200)
+      .send("OTP verified successfully");
+  } catch (error) {
+    console.error("Verify OTP Error:", error.message);
+    return res.status(500).send("Internal Server Error");
+  }
+};
+
+module.exports = {
+  login,
+  register,
+  logout,
+  verifyOtp
+};
