@@ -56,7 +56,7 @@ snapmart/
 ### 📁 1. Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/snapmart.git
+git clone https://github.com/Rahulgaire/SnapMart.git
 cd snapmart
 ```
 
