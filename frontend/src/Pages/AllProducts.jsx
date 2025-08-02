@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { ProductsContext } from "../context/ProductsContext";
+import { Link } from "react-router-dom";
 
 const AllProducts = () => {
   const {
@@ -107,6 +108,7 @@ const AllProducts = () => {
             key={product._id}
             className="border rounded-lg shadow p-4 bg-white hover:shadow-lg transition-transform transform hover:scale-[1.01]"
           >
+            <Link to={`/products/${product._id}`} className="block">
             <img
               src={product.img || "https://via.placeholder.com/300x160?text=No+Image"}
               alt={product.title}
@@ -114,7 +116,8 @@ const AllProducts = () => {
               onError={(e) => {
                 e.target.src = "https://via.placeholder.com/300x160?text=No+Image";
               }}
-            />
+              />
+              </Link>
             <h2 className="mt-2 font-semibold text-lg text-gray-800">
               {product.title}
             </h2>

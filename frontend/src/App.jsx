@@ -9,6 +9,7 @@ import Home from './Pages/Home'
 import Modal from './Pages/Modal'
 import Contact from './Pages/Contact'
 import AllProducts from './Pages/AllProducts'
+import ProductDetails from './Pages/ProductDetails'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<AllProducts />} />
+        <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/modal' element={<Modal />} />
         <Route path='/features' element={<Features />} />
         <Route path='/pricing' element={<Pricing />} />

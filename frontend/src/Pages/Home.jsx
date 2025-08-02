@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { HeroSectionOne } from './HeroSectionOne'
 import { ProductsContext } from '../context/ProductsContext.jsx'
+import { AnimatedTestimonialsDemo } from '../components/Testimonials.jsx';
 
 const Home = () => {
   const {fetchProducts,products} = useContext(ProductsContext);
@@ -30,6 +31,9 @@ const Home = () => {
           ))}
         </div>
       </div>
+           <section className="mt-20">
+        <AnimatedTestimonialsDemo />
+      </section>
     </>
   )
 }
