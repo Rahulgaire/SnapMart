@@ -3,7 +3,7 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 export default function Modal() {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
   return (
     <div>
@@ -11,7 +11,7 @@ export default function Modal() {
         onClick={() => setOpen(true)}
         className="rounded-md bg-gray-950/5 px-2.5 py-1.5 text-sm font-semibold text-gray-900 hover:bg-gray-950/10"
       >
-        Open dialog
+        Delete
       </button>
       <Dialog open={open} onClose={setOpen} className="relative z-10">
         <DialogBackdrop
@@ -36,7 +36,7 @@ export default function Modal() {
                     </DialogTitle>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Are you sure you want to deactivate your account? All of your data will be permanently removed.
+                        Are you sure you want to delete your account? All of your data will be permanently removed.
                         This action cannot be undone.
                       </p>
                     </div>
@@ -49,7 +49,7 @@ export default function Modal() {
                   onClick={() => setOpen(false)}
                   className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto"
                 >
-                  Deactivate
+                  Delete
                 </button>
                 <button
                   type="button"

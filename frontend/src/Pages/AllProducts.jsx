@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 import { Link } from "react-router-dom";
+import { HeroParallax } from "../components/ui/hero-parallax";
 
 const AllProducts = () => {
   const {
@@ -76,6 +77,8 @@ const AllProducts = () => {
   }
 
   return (
+    <>
+    
     <div className="p-6 max-w-7xl mx-auto">
       <h1 className="text-2xl font-bold mb-4 text-blue-700">Our Products</h1>
 
@@ -100,7 +103,7 @@ const AllProducts = () => {
           <option value="above200">Above ₹200</option>
         </select>
       </div>
-
+      {/* <HeroParallax products={filteredProducts} /> */}
       {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {filteredProducts.map((product) => (
@@ -133,6 +136,7 @@ const AllProducts = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 

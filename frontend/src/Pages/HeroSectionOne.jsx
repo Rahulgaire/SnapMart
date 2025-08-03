@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ThreeDMarqueeDemo } from "./ThreeDMarqueeDemo";
 
 export function HeroSectionOne() {
   return (
+    <>
+    {/* <ThreeDMarqueeDemo/> */}
     <div className="relative mx-auto my-10 flex max-w-7xl flex-col items-center justify-center">
       {/* Side borders */}
       <div className="absolute inset-y-0 left-0 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80">
@@ -84,5 +87,6 @@ export function HeroSectionOne() {
         </motion.div>
       </div>
     </div>
+    </>
   );
 }
