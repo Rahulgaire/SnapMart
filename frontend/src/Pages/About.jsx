@@ -1,4 +1,5 @@
 import React from "react";
+import Contact from "./Contact";
 
 // Example team members (you can customize!)
 const TEAM = [
@@ -82,7 +83,7 @@ const About = () => (
         Get Started
       </a>
     </section>
-
+        <Contact/>
   </div>
 );
 

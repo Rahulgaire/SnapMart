@@ -5,7 +5,6 @@ import { Routes, Route, useLocation } from 'react-router-dom' // ✅ FIXED
 
 import Features from './Pages/Features'
 import Home from './Pages/Home'
-import Contact from './Pages/Contact'
 import AllProducts from './Pages/AllProducts'
 import ProductDetails from './Pages/ProductDetails'
 import Login from './Pages/Login'
@@ -33,7 +32,6 @@ const App = () => {
         <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/features' element={<Features />} />
-        <Route path='/contact' element={<Contact />} />
       </Routes>
 
       {!auth && !profile && <Footer />}
