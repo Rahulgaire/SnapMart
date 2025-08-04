@@ -4,9 +4,7 @@ import { Footer } from './common/Footer'
 import { Routes, Route, useLocation } from 'react-router-dom' // ✅ FIXED
 
 import Features from './Pages/Features'
-import Pricing from './Pages/Pricing'
 import Home from './Pages/Home'
-import Modal from './Pages/Modal'
 import Contact from './Pages/Contact'
 import AllProducts from './Pages/AllProducts'
 import ProductDetails from './Pages/ProductDetails'

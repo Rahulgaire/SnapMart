@@ -32,3 +32,8 @@ let productComments = {
     get:"http://localhost:5000/api/comments/:productId",
     delete:"http://localhost:5000/api/comments/:commentId"
 }
+
+let contact = {
+    get:"http://localhost:5000/api/contact",
+    post:"http://localhost:5000/api/contact"
+}

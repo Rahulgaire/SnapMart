@@ -16,9 +16,12 @@ const AllProducts = () => {
     setFilteredProducts,
   } = useContext(ProductsContext);
 
-  useEffect(() => {
+useEffect(() => {
+  // Fetch products when the component mounts
+  if (products.length === 0) {
     fetchProducts();
-  }, []);
+  }
+}, [fetchProducts, products.length]);
 
   useEffect(() => {
     let filtered = [...products];
