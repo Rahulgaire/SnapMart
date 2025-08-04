@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { LoaderOne } from "@/components/ui/loader";
+import { LoaderOne } from "@/components/ui/Loader";
 import { motion } from "framer-motion";
 
 export function PageNotFound() {
