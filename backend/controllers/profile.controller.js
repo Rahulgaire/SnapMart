@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../model/user.model");
-const uploadToCloudinary = require("../config/Cloudinary");
+const uploadToCloudinary = require("../config/cloudinary");
 const getProfile = async (req, res) => {
    try {
      const id = req.id;
