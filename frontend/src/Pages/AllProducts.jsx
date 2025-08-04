@@ -78,64 +78,64 @@ const AllProducts = () => {
 
   return (
     <>
-    
-    <div className="p-6 max-w-7xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-blue-700">Our Products</h1>
 
-      {/* Filters */}
-      <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input
-          type="text"
-          placeholder="Search by title..."
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          className="border border-gray-300 rounded-md px-4 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-        />
+      <div className="p-6 max-w-7xl mx-auto">
+        <h1 className="text-2xl font-bold mb-4 text-blue-700">Our Products</h1>
 
-        <select
-          value={priceRange}
-          onChange={(e) => setPriceRange(e.target.value)}
-          className="border border-gray-300 rounded-md px-4 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-        >
-          <option value="">Filter by Price</option>
-          <option value="under100">Under ₹100</option>
-          <option value="100to200">₹100 - ₹200</option>
-          <option value="above200">Above ₹200</option>
-        </select>
-      </div>
-      {/* <HeroParallax products={filteredProducts} /> */}
-      {/* Product Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {filteredProducts.map((product) => (
-          <div
-            key={product._id}
-            className="border rounded-lg shadow p-4 bg-white hover:shadow-lg transition-transform transform hover:scale-[1.01]"
+        {/* Filters */}
+        <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input
+            type="text"
+            placeholder="Search by title..."
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            className="border border-gray-300 rounded-md px-4 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          />
+
+          <select
+            value={priceRange}
+            onChange={(e) => setPriceRange(e.target.value)}
+            className="border border-gray-300 rounded-md px-4 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
           >
-            <Link to={`/products/${product._id}`} className="block">
-            <img
-              src={product.img || "https://via.placeholder.com/300x160?text=No+Image"}
-              alt={product.title}
-              className="h-40 w-full object-cover rounded bg-gray-100"
-              onError={(e) => {
-                e.target.src = "https://via.placeholder.com/300x160?text=No+Image";
-              }}
-              />
-              </Link>
-            <h2 className="mt-2 font-semibold text-lg text-gray-800">
-              {product.title}
-            </h2>
-            <p className="text-sm text-gray-500 line-clamp-2">{product.description}</p>
-            <p className="mt-1 font-bold text-blue-600">₹{product.price}</p>
-            <button
-              className="mt-3 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition font-semibold"
-              aria-label={`Add ${product.title} to cart`}
+            <option value="">Filter by Price</option>
+            <option value="under100">Under ₹100</option>
+            <option value="100to200">₹100 - ₹200</option>
+            <option value="above200">Above ₹200</option>
+          </select>
+        </div>
+        {/* <HeroParallax products={filteredProducts} /> */}
+        {/* Product Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {filteredProducts.map((product) => (
+            <div
+              key={product._id}
+              className="border rounded-lg shadow p-4 bg-white hover:shadow-lg transition-transform transform hover:scale-[1.01]"
             >
-              Add to Cart
-            </button>
-          </div>
-        ))}
+              <Link to={`/products/${product._id}`} className="block">
+                <img
+                  src={product.img || "https://via.placeholder.com/300x160?text=No+Image"}
+                  alt={product.title}
+                  className="h-40 w-full object-cover rounded bg-gray-100"
+                  onError={(e) => {
+                    e.target.src = "https://via.placeholder.com/300x160?text=No+Image";
+                  }}
+                />
+              </Link>
+              <h2 className="mt-2 font-semibold text-lg text-gray-800">
+                {product.title}
+              </h2>
+              <p className="text-sm text-gray-500 line-clamp-2">{product.description}</p>
+              <p className="mt-1 font-bold text-blue-600">₹{product.price}</p>
+              <button
+                className="mt-3 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition font-semibold"
+                aria-label={`Add ${product.title} to cart`}
+              >
+                Add to Cart
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
     </>
   );
 };

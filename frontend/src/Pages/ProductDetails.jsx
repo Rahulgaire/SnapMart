@@ -1,18 +1,18 @@
-import React, {  useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ProductsContext } from '../context/ProductsContext';
 import { useParams } from 'react-router-dom';
 import Comments from './Comments';
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { products, fetchProducts ,filteredProducts} = useContext(ProductsContext);
+  const { products, fetchProducts, filteredProducts } = useContext(ProductsContext);
   const product = products.find(p => p._id === id) || filteredProducts.find(p => p._id === id);
   useEffect(() => {
     if (products.length === 0) {
       fetchProducts();
     }
-    }, [products, fetchProducts]);  
-    console.log(products);
+  }, [products, fetchProducts]);
+  console.log(products);
   if (!product) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -49,26 +49,26 @@ const ProductDetails = () => {
 
   return (
     <>
-    <div className="max-w-5xl mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <img
-            src={product.img || "https://via.placeholder.com/500x300?text=No+Image"}
-            alt={product.title}
-            className="w-full h-auto rounded-lg shadow"
-          />
+      <div className="max-w-5xl mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <img
+              src={product.img || "https://via.placeholder.com/500x300?text=No+Image"}
+              alt={product.title}
+              className="w-full h-auto rounded-lg shadow"
+            />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800 mb-4">{product.title}</h1>
+            <p className="text-gray-600 mb-4">{product.description}</p>
+            <p className="text-xl font-semibold text-blue-600 mb-6">₹{product.price}</p>
+            <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+              Add to Cart
+            </button>
+          </div>
         </div>
-        <div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">{product.title}</h1>
-          <p className="text-gray-600 mb-4">{product.description}</p>
-          <p className="text-xl font-semibold text-blue-600 mb-6">₹{product.price}</p>
-          <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
-            Add to Cart
-          </button>
-        </div>
+        <Comments id={id} />
       </div>
-    <Comments id={id} />         
-    </div>
     </>
   );
 };

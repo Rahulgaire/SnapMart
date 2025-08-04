@@ -18,7 +18,6 @@ export function NavbarDemo() {
     { name: "Home", link: "/" },
     { name: "Product", link: "/products" },
     { name: "About", link: "/about" },
-    { name: "Pricing", link: "/pricing" },
     { name: "Contact", link: "/contact" },
   ];
 

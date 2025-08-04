@@ -25,7 +25,7 @@ export const ProductsProvider = ({ children }) => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/products");
+      const res = await fetch("https://snapmart-backend.onrender.com/api/products");
       const data = await res.json();
       setProducts(data.products || []);
       setFilteredProducts(data.products || []);
