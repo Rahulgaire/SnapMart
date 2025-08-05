@@ -90,22 +90,22 @@ function Contact() {
               <span>support@snapmart.com</span>
             </p>
             <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden shadow-md mt-4">
-  <iframe
-    title="SnapMart Office Location"
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.021370924425!2d75.85155637495656!3d30.902205674457335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a83f0b720f7c3%3A0x9072bc1605537202!2sFeroze%20Gandhi%20Market%2C%20Ludhiana%2C%20Punjab%20141001!5e0!3m2!1sen!2sin!4v1691321406102!5m2!1sen!2sin"
-    width="100%"
-    height="100%"
-    allowFullScreen=""
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-    className="w-full h-full border-0"
-  ></iframe>
-</div>
+              <iframe
+                title="SnapMart Office Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.021370924425!2d75.85155637495656!3d30.902205674457335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a83f0b720f7c3%3A0x9072bc1605537202!2sFeroze%20Gandhi%20Market%2C%20Ludhiana%2C%20Punjab%20141001!5e0!3m2!1sen!2sin!4v1691321406102!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full border-0"
+              ></iframe>
+            </div>
           </div>
           <div>
 
           </div>
-          </div>
+        </div>
 
         {/* Contact Form */}
         <div className="lg:w-1/2 bg-white p-8 rounded-xl shadow-lg w-full">

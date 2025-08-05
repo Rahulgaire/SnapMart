@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ProductsContext } from "../context/ProductsContext";
+import { ProductsContext } from "../../context/ProductsContext";
 import { Link } from "react-router-dom";
-import {Pagination} from "../components/ui/Pagination";
+import { Pagination } from "../../components/ui/Pagination";
 
 const AllProducts = () => {
   const { products, loading, fetchProducts } = useContext(ProductsContext);

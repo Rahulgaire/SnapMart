@@ -3,7 +3,7 @@ import * as React from "react";
 import { tv } from "tailwind-variants";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import snapMart from "../assets/snapMart.png"
+import snapMart from "../../assets/snapmart.png";
 // Tailwind Variants button
 const button = tv({
   base: "relative inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md px-4 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",

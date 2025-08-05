@@ -52,6 +52,8 @@ const userSchema = new mongoose.Schema({
     default:"https://toppng.com/uploads/preview/instagram-default-profile-picture-11562973083brycehrmyv.png"
   },
   cart: [cartSchema], 
+},{
+  timestamps: true
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);

@@ -7,7 +7,7 @@ export function PageNotFound() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-black text-white font-mono px-4">
+    <div className="flex flex-col items-center justify-center h-[90vh] md:h-[88vh] bg-black text-white font-mono px-4">
       <motion.h1
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}

@@ -83,7 +83,8 @@ const About = () => (
         Get Started
       </a>
     </section>
-        <Contact/>
+    
+    <Contact />
   </div>
 );
 

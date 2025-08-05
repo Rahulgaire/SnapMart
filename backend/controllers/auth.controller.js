@@ -6,14 +6,14 @@ const { sendOtp } = require("../utils/otp");
 const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-
+    console.log(req.body)
     if (!name || !email || !password) {
       return res.status(400).send("Please provide all details");
     }
 
     const existedUser = await User.findOne({ email });
     if (existedUser) {
-      return res.status(400).send("User already exists");
+      return res.status(400).json({message:"User already exists"});
     }
 
     const otp = await sendOtp(email);
@@ -32,6 +32,7 @@ const register = async (req, res) => {
     });
 
     const savedUser = await user.save();
+    await sendOtp(req, res);
 
     return res.status(201).json({
       message: "User created successfully",
@@ -41,19 +42,18 @@ const register = async (req, res) => {
         email: savedUser.email,
       },
     });
-    sendOtp(req, res);
   } catch (error) {
     console.error("Signup Error:", error.message);
-    return res.status(500).send("Internal Server Error");
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
+    console.log(req.body)
     if (!email || !password) {
-      return res.status(400).send("Please provide all details");
+      return res.status(400).json({message:"Please provide all details"});
     }
 
     const existedUser = await User.findOne({ email });
@@ -68,7 +68,7 @@ const login = async (req, res) => {
       existedUser.password
     );
     if (!isPasswordCorrect) {
-      return res.status(400).send("Password is invalid");
+      return res.status(400).json({message:"Password is invalid"});
     }
 
     const payload = {
@@ -90,10 +90,10 @@ const login = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000, // 1 day
       })
       .status(200)
-      .send("User logged in successfully");
+      .json({ message: "User logged in successfully" });
   } catch (error) {
     console.error("Login Error:", error.message);
-    return res.status(500).send("Internal Server Error");
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
@@ -147,9 +147,19 @@ const verifyOtp = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({}, "-password -otp");
+    return res.status(200).json({users:users});
+  } catch (error) {
+    console.error("Get All Users Error:", error.message);
+    return res.status(500).send("Internal Server Error");
+  }
+};
 module.exports = {
   login,
   register,
   logout,
-  verifyOtp
+  verifyOtp,
+  getAllUsers
 };

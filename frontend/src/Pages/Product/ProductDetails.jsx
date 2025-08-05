@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { ProductsContext } from '../context/ProductsContext';
+import { ProductsContext } from '../../context/ProductsContext';
 import { useParams } from 'react-router-dom';
 import Comments from './Comments';
 

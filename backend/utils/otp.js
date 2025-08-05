@@ -13,17 +13,27 @@ const sendOtp = async (email) => {
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
-    const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: email,
-      subject: "Your OTP Code",
-      text: `Your OTP code is ${otpCode}`,
-    };
+   const mailOptions = {
+  from: `"SnapMart Support" <${process.env.GMAIL_USER}>`,
+  to: email,
+  subject: "SnapMart - Your OTP Code",
+  text: `Hello,
+
+Your OTP code is: ${otpCode}
+
+Please do not share this code with anyone. It is valid for the next 10 minutes.
+
+This is an auto-generated message. Do not reply to this email.
+
+Best regards,  
+SnapMart Team`,
+};
+
 
     await transporter.sendMail(mailOptions);
 

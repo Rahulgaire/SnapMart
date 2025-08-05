@@ -8,16 +8,21 @@ import {
   MobileNavHeader,
   MobileNavToggle,
   MobileNavMenu
-} from "@/components/ui/resizable-navbar";
+} from "@/components/resizable-navbar";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
 
-export function NavbarDemo() {
+export function AdminNavbar() {
   const navItems = [
-    { name: "Home", link: "/" },
-    { name: "Product", link: "/products" },
-    { name: "About", link: "/about" },
+    { name: "Add Products", link: "/add-products" },
+    { name: "Users", link: "/users-details" },
+    { name: "Orders", link: "/orders" },
+    { name: "All Products", link: "/all-products" },
+    { name: "Support", link: "/support" },
+    { name: "Logout", link: "/logout" },
+    { name: "Dashboard", link: "/admin-dashboard" },
+    { name: "Profile", link: "/admin-profile" },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ThreeDMarqueeDemo } from "./ThreeDMarqueeDemo";
 
 export function HeroSectionOne() {
   return (
