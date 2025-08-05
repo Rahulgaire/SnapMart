@@ -13,8 +13,6 @@ export const ProductsProvider = ({ children }) => {
   const ProductsContextValue = {
     products,
     setProducts,
-    filteredProducts,
-    setFilteredProducts,
     searchText,
     setSearchText,
     loading,
@@ -35,6 +33,7 @@ export const ProductsProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  
   return (
     <ProductsContext.Provider value={{ ...ProductsContextValue, fetchProducts }}>
       {children}

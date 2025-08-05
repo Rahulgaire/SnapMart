@@ -24,7 +24,7 @@ const TEAM = [
 ];
 
 const About = () => (
-  <div className="bg-gradient-to-b from-blue-50 via-white to-blue-100 min-h-screen text-gray-800">
+  <div className="bg-gradient-to-b from-blue-50 via-white to-blue-100 min-h-screen text-gray-800 p-4 md:p-0">
 
     {/* Main heading */}
     <div className="max-w-4xl mx-auto text-center py-14 px-4">

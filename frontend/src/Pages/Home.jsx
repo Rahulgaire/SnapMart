@@ -3,12 +3,13 @@ import { HeroSectionOne } from './HeroSectionOne'
 import { ProductsContext } from '../context/ProductsContext.jsx'
 import { AnimatedTestimonialsDemo } from '../components/Testimonials.jsx';
 import { InfiniteMovingCardsDemo } from './InfiniteMovingCardsDemo.jsx';
+import Accordian from './Accordian.jsx';
 
 const Home = () => {
   const { fetchProducts, products } = useContext(ProductsContext);
   useEffect(() => {
     fetchProducts();
-  }, [fetchProducts]);
+  }, []);
 
   return (
     <>
@@ -17,9 +18,9 @@ const Home = () => {
         <h2 className="text-2xl font-bold mb-4">Featured Products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
-          {products.slice(0, 8).map((product) => (
-            <div key={product.id} className="border p-4 rounded-lg">
-              <img src={product.image} alt={product.title} className="w-full h-48 object-cover mb-2" />
+          {products.slice(0, 8).map((product,index) => (
+            <div key={index} className="border p-4 rounded-lg">
+              <img src={product.img} alt={product.title} className="w-full h-48 object-cover mb-2" />
               <h3 className="text-lg font-semibold">{product.title}</h3>
               <p className="text-gray-600">${product.price}</p>
               <button
@@ -36,6 +37,7 @@ const Home = () => {
       <section className="mt-2">
         <AnimatedTestimonialsDemo />
       </section>
+      <Accordian/>
     </>
   )
 }
