@@ -6,23 +6,52 @@ const { sendOtp } = require("../utils/otp");
 const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    console.log(req.body)
+    console.log(req.body);
+
     if (!name || !email || !password) {
-      return res.status(400).send("Please provide all details");
+      return res.status(400).json({message:"Please provide all details"});
     }
 
+    // Check if user already exists first
     const existedUser = await User.findOne({ email });
-    if (existedUser) {
-      return res.status(400).json({message:"User already exists"});
+
+    if (existedUser && existedUser.isVerified) {
+      // User is verified, reject registration without modifying user's data
+      return res.status(400).json({
+        message: "User already exists",
+        user: {
+          id: existedUser._id,
+          name: existedUser.name,
+          email: existedUser.email,
+        },
+      });
     }
 
+    // Generate OTP and hash password only if user not verified or new
     const otp = await sendOtp(email);
-
     if (otp === -1) {
-      return res.status(500).send("Failed to send OTP");
+      return res.status(500).json({message:"Failed to send OTP"});
     }
+
     const hashPassword = await bcrypt.hash(password, 10);
 
+    if (existedUser && !existedUser.isVerified) {
+      // Update existing unverified user with new password and OTP
+      existedUser.password = hashPassword;
+      existedUser.otp = otp;
+      await existedUser.save();
+
+      return res.status(200).json({
+        message: "OTP resent to your email",
+        user: {
+          id: existedUser._id,
+          name: existedUser.name,
+          email: existedUser.email,
+        },
+      });
+    }
+
+    // Create a new user if none exists
     const user = new User({
       name,
       email,
@@ -32,7 +61,6 @@ const register = async (req, res) => {
     });
 
     const savedUser = await user.save();
-    await sendOtp(req, res);
 
     return res.status(201).json({
       message: "User created successfully",
@@ -48,6 +76,7 @@ const register = async (req, res) => {
   }
 };
 
+
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -60,9 +89,11 @@ const login = async (req, res) => {
 
     // BUG FIX: This check should be before bcrypt.compare
     if (!existedUser) {
-      return res.status(400).send("Email is invalid");
+      return res.status(400).json({message:"Email is invalid"});
     }
-
+    if (!existedUser.isVerified) {
+      return res.status(400).json({message:"User is not verified. Please verify your email."});
+    }
     const isPasswordCorrect = await bcrypt.compare(
       password,
       existedUser.password
@@ -122,10 +153,15 @@ const verifyOtp = async (req, res) => {
     if (existedUser.otp !== otpCode) {
       return res.status(400).send("Invalid OTP");
     }
+    if (existedUser.isVerified) {
+      return res.status(400).send("User already verified");
+    }
 
-    // Clear the OTP after successful verification
-    existedUser.otp = null;
+    // Set user as verified
+    existedUser.isVerified = true;
+    existedUser.otp = ""; // Clear OTP after verification
     await existedUser.save();
+
 
     const payload = { id: existedUser._id, role: existedUser.role };
     const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {

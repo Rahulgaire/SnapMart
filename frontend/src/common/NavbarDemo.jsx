@@ -19,6 +19,7 @@ export function NavbarDemo() {
     { name: "Product", link: "/products" },
     { name: "About", link: "/about" },
     { name: "Contact", link: "/contact" },
+    { name: "Blog", link: "/blog" },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -43,7 +44,7 @@ export function NavbarDemo() {
             </Link>
             <Link to='/login'>
             <NavbarButton variant="secondary">Login</NavbarButton></Link>
-            <Link to='/about'>
+            <Link to='/contact'>
             <NavbarButton variant="primary">Book a Call</NavbarButton>
             </Link>
           </div>
@@ -93,7 +94,7 @@ export function NavbarDemo() {
                 Login
               </NavbarButton>
                 </Link>
-                <Link to='/about'>
+                <Link to='/contact'>
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="secondary"

@@ -53,7 +53,7 @@ const products = [
   {
     title: "Eggs (Dozen)",
     description: "Farm fresh eggs, high quality and nutrition.",
-    img: "https://plus.unsplash.com/premium_photo-1664372599369-dd9f4ee07254?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cG90YXRvZXN8ZW58MHx8MHx8fDA%3D",
+    img: "https://images.unsplash.com/photo-1506976785307-8732e854ad03?q=80&w=743&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     price: 70,
   },
   {
@@ -77,7 +77,7 @@ const products = [
   {
     title: "Olive Oil (500ml)",
     description: "Extra virgin olive oil for cooking and salads.",
-    img: "https://images.unsplash.com/photo-1574785289548-b6604d39125d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG9saXZlJTIwb2lsfGVufDB8fDB8fHww",
+    img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b2xpdmUlMjBvaWx8ZW58MHx8MHx8fDA%3D",
     price: 350,
   },
   {

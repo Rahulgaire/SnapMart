@@ -9,7 +9,7 @@ export function TypewriterEffectSmoothDemo() {
     { text: "with" },
     {
       text: "SnapMart.",
-      className: "text-lg md:text-5xl text-blue-500 dark:text-blue-500",
+      className: "text-lg md:text-5xl text-white dark:text-blue-500 ",
     },
   ];
 
