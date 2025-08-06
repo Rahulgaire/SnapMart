@@ -22,12 +22,12 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/auth/user/login", formData);
-
+      const res = await axios.post("https://snapmart-backend.onrender.com/auth/user/login", formData);
+      console.log(res.data);
       if (res.status === 200) {
         toast.success("Login successful!");
         localStorage.setItem("token", res.data.token); // Assuming token is in res.data.token
-        if (res.data.user.role === "admin") {
+        if (res?.data?.role === "admin") {
           navigate("/admin");
         } else {
           navigate("/");
@@ -42,7 +42,7 @@ const LoginForm = () => {
 
   return (
     <div className="h-[90vh] md:h-[87.8vh] py-16 md:py-8.5 bg-gray-100 dark:bg-zinc-900 flex items-center justify-center px-10">
-      <div className="w-full max-w-md bg-white dark:bg-zinc-800 rounded-2xl shadow-lg p-8 sm:p-10 space-y-6">
+      <div className="w-full max-w-md bg-white dark:bg-zinc-800 rounded-2xl shadow-lg p-8 sm:p-10 sm:px-12 space-y-6">
         <div className="text-center">
           <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">
             Login to Your Account
@@ -93,7 +93,7 @@ const LoginForm = () => {
           </button>
         </form>
 
-        <p className="text-center text-sm text-gray-500 dark:text-gray-400">
+        <p className="text-center text-[12px] text-gray-500 dark:text-gray-400">
           Don’t have an account?{" "}
           <Link to="/register" className="text-blue-600 hover:underline dark:text-blue-400">
             Register here

@@ -1,5 +1,6 @@
 import React from "react";
 import Contact from "./Contact";
+import { Link } from "react-router-dom";
 
 // Example team members (you can customize!)
 const TEAM = [
@@ -76,15 +77,14 @@ const About = () => (
       <p className="text-blue-100 mb-6">
         Whether you’re a passionate shopper, skilled vendor, or want to build with us—there’s a place for you at SnapMart. Let’s grow together!
       </p>
-      <a
-        href="/signup"
+      <Link
+        to="/login"
         className="inline-block bg-white text-blue-600 font-bold text-lg px-7 py-3 rounded-xl shadow hover:bg-blue-50 hover:text-blue-700 transition"
       >
         Get Started
-      </a>
+      </Link>
     </section>
     
-    <Contact />
   </div>
 );
 

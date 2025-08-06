@@ -21,7 +21,7 @@ const Verifyotp = ({email = "user@example.com" }) => {
       </p>
 
       <div className="text-center bg-gray-100 dark:bg-zinc-700 text-2xl font-bold tracking-widest py-3 rounded-md text-blue-600 dark:text-blue-400 mb-4">
-        {otpCode}
+        {/* {otpCode} */}
       </div>
 
       <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">

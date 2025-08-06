@@ -14,6 +14,7 @@ import Profile from './Pages/Profile/Profile'
 import { PageNotFound } from './Pages/PageNotFound'
 import Support from './admin/Support'
 import Dashboard from './admin/Dashboard'
+import Contact from './Pages/About/Contact'
 
 const App = () => {
   const location = useLocation()
@@ -35,6 +36,7 @@ const App = () => {
         <Route path='/products' element={<AllProducts />} />
         <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/contact' element={<Contact />} />
       </Routes>
 
       {!page404 && !auth && !profile && <Footer />}

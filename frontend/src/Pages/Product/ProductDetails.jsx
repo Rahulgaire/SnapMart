@@ -55,7 +55,7 @@ const ProductDetails = () => {
             <img
               src={product.img || "https://via.placeholder.com/500x300?text=No+Image"}
               alt={product.title}
-              className="w-full h-auto rounded-lg shadow"
+              className="w-full h-[50vh] rounded-lg shadow"
             />
           </div>
           <div>

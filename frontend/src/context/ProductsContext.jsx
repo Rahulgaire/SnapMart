@@ -25,6 +25,7 @@ export const ProductsProvider = ({ children }) => {
     try {
       const res = await fetch("https://snapmart-backend.onrender.com/api/products");
       const data = await res.json();
+      console.log(data.products[0])
       setProducts(data.products || []);
       setFilteredProducts(data.products || []);
     } catch (err) {

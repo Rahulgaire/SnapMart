@@ -18,17 +18,34 @@ const faqs = [
     question: "Do you offer express delivery?",
     answer: "Yes, we offer same-day or next-day delivery in selected cities. Delivery options will be shown at checkout.",
   },
+    {
+    question: "What is Snap Mart?",
+    answer: "Snap Mart is your one-stop online grocery store, offering fresh fruits, vegetables, dairy, snacks, and more delivered to your doorstep.",
+  },
+  {
+    question: "Do you offer same-day delivery?",
+    answer: "Yes! We provide same-day delivery for orders placed before 5 PM in select cities.",
+  },
+  {
+    question: "How can I track my order?",
+    answer: "Once your order is placed, you’ll receive a tracking link via SMS and email to monitor your delivery in real-time.",
+  },
+  {
+    question: "Can I return or exchange products?",
+    answer: "Absolutely. If you're not satisfied with a product, you can request a return or replacement within 24 hours of delivery.",
+  },
 ];
 
 const Support = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
+  
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="bg-gray-50 dark:bg-zinc-900 min-h-screen px-4 sm:px-6 lg:px-16 py-16 text-gray-800 dark:text-white">
+    <div className="bg-gray-50  min-h-screen px-4 sm:px-6 lg:px-16 py-16 text-gray-800 dark:text-white">
       <div className="max-w-5xl mx-auto space-y-16">
 
         {/* Header */}
@@ -62,7 +79,7 @@ const Support = () => {
         <div>
           <h2 className="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
           <div className="space-y-4">
-            {faqs.map((faq, index) => (
+            {faqs.slice(0,4).map((faq, index) => (
               <div key={index} className="bg-white dark:bg-zinc-800 p-4 rounded-lg shadow-md">
                 <button
                   onClick={() => toggleFAQ(index)}
@@ -76,11 +93,21 @@ const Support = () => {
                 )}
               </div>
             ))}
+            {
+              faqs.length > 4 && (
+                <button
+                  onClick={() => toggleFAQ(4)}
+                  className="text-blue-600 dark:text-blue-400 hover:underline mt-4"
+                >
+                  {openIndex === 4 ? "Show Less" : "Show More"}
+                </button>
+              )
+            }
           </div>
         </div>
 
         {/* Contact Form */}
-        <div>
+        {/* <div>
           <h2 className="text-2xl font-semibold mb-6">Still need help? Send us a message</h2>
           <form className="grid gap-4 bg-white dark:bg-zinc-800 p-6 rounded-lg shadow-md">
             <input
@@ -108,7 +135,7 @@ const Support = () => {
               Submit
             </button>
           </form>
-        </div>
+        </div> */}
 
       </div>
     </div>

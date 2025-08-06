@@ -4,6 +4,9 @@ import { ProductsContext } from '../../context/ProductsContext.jsx'
 import { AnimatedTestimonialsDemo } from './Testimonials.jsx';
 import { InfiniteMovingCardsDemo } from './InfiniteMovingCardsDemo.jsx';
 import Accordian from './Accordian.jsx';
+import Support from '../../admin/Support.jsx';
+import QuoteOfTheDay from '../../components/RandomQuote/QuoteOfTheDay.jsx';
+import { TypewriterEffectSmoothDemo } from './TypewriterEffectSmoothDemo.jsx';
 
 const Home = () => {
   const { fetchProducts, products } = useContext(ProductsContext);
@@ -13,6 +16,7 @@ const Home = () => {
 
   return (
     <>
+      <TypewriterEffectSmoothDemo />
       <HeroSectionOne />
       <div className="container mx-auto px-4 py-8"  >
         <h2 className="text-2xl font-bold mb-4">Featured Products</h2>
@@ -38,6 +42,8 @@ const Home = () => {
         <AnimatedTestimonialsDemo />
       </section>
       <Accordian />
+      {/* <Support /> */}
+      <QuoteOfTheDay/>
     </>
   )
 }

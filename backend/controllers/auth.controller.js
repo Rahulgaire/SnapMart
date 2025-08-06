@@ -90,7 +90,7 @@ const login = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000, // 1 day
       })
       .status(200)
-      .json({ message: "User logged in successfully" });
+      .json({ message: "User logged in successfully", role: existedUser.role });
   } catch (error) {
     console.error("Login Error:", error.message);
     return res.status(500).json({ message: "Internal Server Error" });

@@ -1,7 +1,9 @@
+// AllProducts.jsx
 import React, { useContext, useEffect, useState } from "react";
 import { ProductsContext } from "../../context/ProductsContext";
 import { Link } from "react-router-dom";
 import { Pagination } from "../../components/ui/Pagination";
+import { HoverEffect } from "../../components/ui/card-hover-effect";
 
 const AllProducts = () => {
   const { products, loading, fetchProducts } = useContext(ProductsContext);
@@ -118,7 +120,7 @@ const AllProducts = () => {
 
       {/* Products Grid */}
       {currentItems.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {currentItems.map((product) => (
             <div
               key={product._id}
@@ -131,7 +133,7 @@ const AllProducts = () => {
                     "https://via.placeholder.com/300x160?text=No+Image"
                   }
                   alt={product.title}
-                  className="h-40 w-full object-cover rounded bg-gray-100"
+                  className="h-32 sm:h-40 w-full object-cover rounded bg-gray-100"
                   onError={(e) => {
                     e.target.src =
                       "https://via.placeholder.com/300x160?text=No+Image";
@@ -146,13 +148,15 @@ const AllProducts = () => {
                 {product.description}
               </p>
               <p className="mt-1 font-bold text-blue-600">₹{product.price}</p>
-
+                   <Link to={`/products/${product._id}`} className="block">
+                  
               <button
                 className="mt-3 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition font-semibold"
                 aria-label={`Add ${product.title} to cart`}
               >
-                Add to Cart
+                Get Details
               </button>
+              </Link>
             </div>
           ))}
         </div>
