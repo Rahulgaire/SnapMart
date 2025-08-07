@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const Verifyotp = ({ email = "user@example.com", onVerified }) => {
   const [otpCode, setOtpCode] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
   const verifyTheOtp = async (e) => {
     e.preventDefault();
     if (!otpCode.trim()) {
@@ -25,6 +25,7 @@ const Verifyotp = ({ email = "user@example.com", onVerified }) => {
         toast.success("OTP verified successfully!");
         if (onVerified) onVerified();
       }
+      navigate("/login");
     } catch (error) {
       toast.error(
         error?.response?.data || error.message || "OTP verification failed"

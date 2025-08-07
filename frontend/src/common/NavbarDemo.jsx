@@ -20,6 +20,7 @@ export function NavbarDemo() {
     { name: "About", link: "/about" },
     { name: "Contact", link: "/contact" },
     { name: "Blog", link: "/blog" },
+    { name: "Admin", link: "/admin" },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

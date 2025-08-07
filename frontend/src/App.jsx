@@ -23,11 +23,12 @@ const App = () => {
   const auth = location.pathname.startsWith('/login') || location.pathname.startsWith('/register')
   const profile = location.pathname.startsWith('/profile')
   const page404 = location.pathname.startsWith('*')
+  const isAdmin = location.pathname.startsWith('/admin')
   return (
     <div>
-      <NavbarDemo />
+     {!isAdmin && <NavbarDemo />}
       <Routes>
-        <Route path='/admin' element={<Dashboard />} />
+        <Route path='/admin/*' element={<Dashboard />} />
         <Route path='/' element={<Home />} />
         <Route path='/support' element={<Support />} />
         <Route path='*' element={<PageNotFound />} />
@@ -42,7 +43,7 @@ const App = () => {
         <Route path='/contact' element={<Contact />} />
       </Routes>
 
-      {!page404 && !auth && !profile && <Footer />}
+      {!isAdmin && !page404 && !auth && !profile && <Footer />}
     </div>
   )
 }

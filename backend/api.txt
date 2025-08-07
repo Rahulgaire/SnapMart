@@ -39,6 +39,7 @@ let contact = {
 }
 let blog = {
     get:"http://localhost:5000/api/blog",
+    delete:"http://localhost:5000/api/blog/:id",
     post:"http://localhost:5000/api/blog"
 }
 

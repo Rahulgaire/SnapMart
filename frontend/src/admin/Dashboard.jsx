@@ -1,18 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import AllProducts from './AllProducts';
+import Addproducts from './Addproducts';
+import Sidebar from './AdminCommon/Sidebar';
+import Users from './Users';
+import Blogs from './Blogs';
 
 const Dashboard = () => {
-  return (
-    <div>
-      Dashboard
-      <p className="text-center text-2xl font-bold mt-10">Welcome to the Admin Dashboard</p>
-      <p className="text-center text-gray-600 mt-4">Here you can manage users, view statistics, and perform administrative tasks.</p>
-      <div className="flex justify-center mt-10">
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">View Users</button>
-        <button className="bg-green-500 text-white px-4 py-2 rounded-lg ml-4">View Statistics</button>
-        <button className="bg-red-500 text-white px-4 py-2 rounded-lg ml-4">Settings</button>
-        </div>
-      </div>
-  )
-}
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-export default Dashboard
+  return (
+    <div className="flex h-screen">
+      {/* Sidebar */}
+      <Sidebar isOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+
+      {/* Main Content */}
+      <div
+        className={`
+          flex-1 bg-gray-100 dark:bg-zinc-900 transition-all duration-300 ml-13
+        `}
+      >
+        <Routes>
+          <Route path="/" element={<div className="text-white text-2xl font-bold p-4">Dashboard Home</div>} />
+          <Route path="/products" element={<AllProducts />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/add-product" element={<Addproducts />} />
+        </Routes>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;
