@@ -5,13 +5,14 @@ const { sendOtp } = require("../utils/otp");
 
 const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password,role } = req.body;
     console.log(req.body);
 
     if (!name || !email || !password) {
       return res.status(400).json({message:"Please provide all details"});
     }
-
+    let detailsRole  = role || 'user'
+ 
     // Check if user already exists first
     const existedUser = await User.findOne({ email });
 
@@ -41,7 +42,7 @@ const register = async (req, res) => {
       existedUser.otp = otp;
       await existedUser.save();
 
-      return res.status(200).json({
+      return res.status(201).json({
         message: "OTP resent to your email",
         user: {
           id: existedUser._id,
@@ -55,6 +56,7 @@ const register = async (req, res) => {
     const user = new User({
       name,
       email,
+      role:detailsRole,
       password: hashPassword,
       otp: otp,
       isVerified: false,
@@ -63,11 +65,12 @@ const register = async (req, res) => {
     const savedUser = await user.save();
 
     return res.status(201).json({
-      message: "User created successfully",
+      message: `Otp Sent to ${savedUser.email} `,
       user: {
         id: savedUser._id,
         name: savedUser.name,
         email: savedUser.email,
+        role:savedUser.role
       },
     });
   } catch (error) {
@@ -121,7 +124,7 @@ const login = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000, // 1 day
       })
       .status(200)
-      .json({ message: "User logged in successfully", role: existedUser.role });
+      .json({ message: "User logged in successfully", role: existedUser.role ,token:jwtToken,isVerified:existedUser.isVerified});
   } catch (error) {
     console.error("Login Error:", error.message);
     return res.status(500).json({ message: "Internal Server Error" });
@@ -176,7 +179,9 @@ const verifyOtp = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000,
       })
       .status(200)
-      .send("OTP verified successfully");
+      .json({message:"OTP verified successfully",
+        message2:"User Created Successfully"
+      });
   } catch (error) {
     console.error("Verify OTP Error:", error.message);
     return res.status(500).send("Internal Server Error");
@@ -192,6 +197,8 @@ const getAllUsers = async (req, res) => {
     return res.status(500).send("Internal Server Error");
   }
 };
+
+
 module.exports = {
   login,
   register,

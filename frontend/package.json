@@ -23,6 +23,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
     "heroicons": "^2.2.0",
+    "js-cookie": "^3.0.5",
     "lightswind": "^3.1.15",
     "motion": "^12.23.12",
     "react": "^19.1.1",

@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 
 const authorization = (req, res, next) => {
-    const token = req.cookies.token;
+    const token = req.cookies.token || res.headers?.authorization.split("")[1] ;
     if (!token) {
         return res.status(401).send("Please login to access this resource");
     }

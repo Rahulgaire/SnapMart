@@ -4,6 +4,7 @@ import { tv } from "tailwind-variants";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import snapMart from "../../assets/snapMart.png";
+import { Link, useLocation } from "react-router-dom";
 // Tailwind Variants button
 const button = tv({
   base: "relative inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md px-4 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
@@ -36,20 +37,29 @@ export const NavBody = ({ children }) => (
 );
 
 // Nav links (Desktop)
-export const NavItems = ({ items, className }) => (
-  <ul className={cn("hidden md:flex items-center gap-6", className)}>
-    {items.map((item, idx) => (
-      <li key={idx}>
-        <a
-          href={item.link}
-          className="text-sm font-medium text-white hover:text-gray-100 transition"
-        >
-          {item.name}
-        </a>
-      </li>
-    ))}
-  </ul>
-);
+export const NavItems = ({ items, className }) => {
+  const location = useLocation();
+
+  return (
+    <ul className={cn("hidden md:flex items-center gap-6", className)}>
+      {items.map((item, idx) => (
+        <li key={idx}>
+          <Link
+            to={item.link}
+            className={cn(
+              "text-sm font-medium transition",
+              location.pathname === item.link
+                ? "text-yellow-300"
+                : "text-white hover:text-gray-100"
+            )}
+          >
+            {item.name}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 // Logo
 export const NavbarLogo = ({ text = "YourBrand" }) => (

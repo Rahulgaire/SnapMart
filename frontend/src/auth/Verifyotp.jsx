@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Verifyotp = ({ email = "user@example.com", onVerified }) => {
   const [otpCode, setOtpCode] = useState("");
@@ -15,7 +16,7 @@ const Verifyotp = ({ email = "user@example.com", onVerified }) => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "https://snapmart-backend.onrender.com/auth/user/verify-otp",
+        "http://localhost:5000/auth/user/verify-otp",
         {
           email,
           otpCode,
@@ -23,6 +24,9 @@ const Verifyotp = ({ email = "user@example.com", onVerified }) => {
       );
       if (res.status === 200) {
         toast.success("OTP verified successfully!");
+        setTimeout(()=>{
+          toast.success("User Registered Successfull")
+        },5000)
         if (onVerified) onVerified();
       }
       navigate("/login");

@@ -3,7 +3,6 @@ import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { PiBuildingOfficeLight } from "react-icons/pi";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Button } from "@/components/ui/stateful-button";
 
 function Contact() {
   const [loading, setLoading] = useState(false);
@@ -22,16 +21,18 @@ function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
     if (!form.name || !form.email || !form.subject || !form.message) {
       toast.error("Please fill in all required fields.");
-      setLoading(false);
       return;
     }
 
+    setLoading(true);
     try {
-      const { data } = await axios.post("https://snapmart-backend.onrender.com/api/contact", form);
+      const { data } = await axios.post(
+        "https://snapmart-backend.onrender.com/api/contact",
+        form
+      );
       toast.success(data.message || "Message sent successfully!");
       setForm({
         name: "",
@@ -41,7 +42,8 @@ function Contact() {
         message: "",
       });
     } catch (error) {
-      const errorMessage = error.response?.data?.message || "Failed to send message.";
+      const errorMessage =
+        error.response?.data?.message || "Failed to send message.";
       toast.error(errorMessage);
     } finally {
       setLoading(false);
@@ -51,6 +53,7 @@ function Contact() {
   return (
     <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 py-16 bg-gradient-to-tr from-blue-50 to-blue-100">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
+        
         {/* Contact Info */}
         <div className="lg:w-1/2 flex flex-col gap-10 bg-white shadow-lg p-8 rounded-xl border border-blue-100">
           <div>
@@ -58,8 +61,9 @@ function Contact() {
               <FaPhoneAlt /> Contact SnapMart
             </h1>
             <p className="text-gray-600 mt-2">
-              We’re here to help with all your shopping or platform-related queries.
-              Reach out to the SnapMart team — we’ll get back to you promptly.
+              We’re here to help with all your shopping or platform-related
+              queries. Reach out to the SnapMart team — we’ll get back to you
+              promptly.
             </p>
           </div>
 
@@ -77,7 +81,9 @@ function Contact() {
           </div>
 
           <div>
-            <h2 className="text-xl font-semibold text-blue-700 mb-3">📱 Phone & Email</h2>
+            <h2 className="text-xl font-semibold text-blue-700 mb-3">
+              📱 Phone & Email
+            </h2>
             <p className="flex items-center gap-3 text-gray-600 mb-2">
               <FaPhoneAlt className="text-blue-700" />
               <span className="text-sm sm:text-base">+91 73473 49556</span>
@@ -108,11 +114,14 @@ function Contact() {
 
         {/* Contact Form */}
         <div className="lg:w-1/2 bg-white p-8 rounded-xl shadow-lg w-full border border-blue-100">
-          <h1 className="text-xl font-semibold text-blue-700  flex items-center gap-3 mb-3">
+          <h1 className="text-xl font-semibold text-blue-700 flex items-center gap-3 mb-3">
             <PiBuildingOfficeLight className="text-blue-700 text-4xl" />
-            <span className="inline-block">Support </span>
+            <span>Support</span>
           </h1>
-            <p className="text-gray-600 block mb-10">Have questions or need assistance? We're here to help!</p>
+          <p className="text-gray-600 mb-10">
+            Have questions or need assistance? We're here to help!
+          </p>
+
           <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
             {[
               { label: "Name", id: "name", type: "text", required: true },
@@ -121,7 +130,10 @@ function Contact() {
               { label: "Subject", id: "subject", type: "text", required: true },
             ].map(({ label, id, type, required }) => (
               <div key={id}>
-                <label htmlFor={id} className="block text-sm font-semibold text-gray-900">
+                <label
+                  htmlFor={id}
+                  className="block text-sm font-semibold text-gray-900"
+                >
                   {label}
                 </label>
                 <input
@@ -138,7 +150,10 @@ function Contact() {
             ))}
 
             <div>
-              <label htmlFor="message" className="block text-sm font-semibold text-gray-900">
+              <label
+                htmlFor="message"
+                className="block text-sm font-semibold text-gray-900"
+              >
                 Message
               </label>
               <textarea
@@ -153,9 +168,39 @@ function Contact() {
               ></textarea>
             </div>
 
-            <Button disabled={loading}>
-              {loading ? "Sending..." : "Send Message"}
-            </Button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-blue-600 text-white py-2.5 rounded-md font-semibold hover:bg-blue-700 transition disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              {loading ? (
+                <>
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8h4z"
+                    ></path>
+                  </svg>
+                  Sending...
+                </>
+              ) : (
+                "Send Message"
+              )}
+            </button>
           </form>
         </div>
       </div>

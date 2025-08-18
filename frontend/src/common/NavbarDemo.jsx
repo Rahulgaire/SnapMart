@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FaUser, FaShoppingCart } from "react-icons/fa";
 import {
   Navbar,
   NavBody,
@@ -7,11 +10,8 @@ import {
   NavbarButton,
   MobileNavHeader,
   MobileNavToggle,
-  MobileNavMenu
+  MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { FaUser, FaShoppingCart } from "react-icons/fa";
 
 export function NavbarDemo() {
   const navItems = [
@@ -25,13 +25,26 @@ export function NavbarDemo() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // 👇 Scroll state for shadow effect
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <div className="sticky top-0 left-0 right-0 w-full z-[100] bg-white shadow-xl">
-      <Navbar className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+    <div className="sticky top-0 left-0 right-0 w-full z-[100]">
+      <Navbar
+        className={`bg-gradient-to-r from-blue-600 to-blue-800 text-white transition-all duration-300 ${
+          scrolled ? "shadow-lg" : "shadow-none"
+        }`}
+      >
         {/* Desktop Navigation */}
         <NavBody>
           <div className="hidden md:flex">
-            <Link to='/'>
+            <Link to="/">
               <NavbarLogo text="SnapMart" />
             </Link>
           </div>
@@ -43,10 +56,11 @@ export function NavbarDemo() {
             <Link to="/profile" title="Profile">
               <FaUser className="w-5 h-5 text-white hover:text-gray-200" />
             </Link>
-            <Link to='/login'>
-            <NavbarButton variant="secondary">Login</NavbarButton></Link>
-            <Link to='/contact'>
-            <NavbarButton variant="primary">Book a Call</NavbarButton>
+            <Link to="/login">
+              <NavbarButton variant="secondary">Login</NavbarButton>
+            </Link>
+            <Link to="/contact">
+              <NavbarButton variant="primary">Book a Call</NavbarButton>
             </Link>
           </div>
         </NavBody>
@@ -54,8 +68,8 @@ export function NavbarDemo() {
         {/* Mobile Navigation */}
         <MobileNav>
           <MobileNavHeader>
-            <Link to='/'>
-            <NavbarLogo text="SnapMart" />
+            <Link to="/">
+              <NavbarLogo text="SnapMart" />
             </Link>
             <MobileNavToggle
               isOpen={isMobileMenuOpen}
@@ -78,7 +92,6 @@ export function NavbarDemo() {
             <div className="flex gap-6 mt-4 px-1">
               <Link to="/cart" onClick={() => setIsMobileMenuOpen(false)}>
                 <FaShoppingCart className="w-5 h-5 text-white" />
-                
               </Link>
               <Link to="/profile" onClick={() => setIsMobileMenuOpen(false)}>
                 <FaUser className="w-5 h-5 text-white" />
@@ -86,24 +99,24 @@ export function NavbarDemo() {
             </div>
 
             <div className="flex flex-col gap-4 mt-4">
-              <Link to='/login'>
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
+              <Link to="/login">
+                <NavbarButton
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full"
                 >
-                Login
-              </NavbarButton>
-                </Link>
-                <Link to='/contact'>
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="secondary"
-                className="w-full"
+                  Login
+                </NavbarButton>
+              </Link>
+              <Link to="/contact">
+                <NavbarButton
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="secondary"
+                  className="w-full"
                 >
-                Book a Call
-              </NavbarButton>
-                </Link>
+                  Book a Call
+                </NavbarButton>
+              </Link>
             </div>
           </MobileNavMenu>
         </MobileNav>
@@ -111,4 +124,3 @@ export function NavbarDemo() {
     </div>
   );
 }
-    

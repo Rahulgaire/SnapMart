@@ -7,10 +7,12 @@ let user ={
 }
 
 let userProfile = {
-    get:"http://localhost:5000/auth/user/profile",
-    patch:"http://localhost:5000/auth/user/profile",
-    delete:"http://localhost:5000/auth/user/profile/:id",
+  get: "http://localhost:5000/api/profile",          // Get user profile
+  patch: "http://localhost:5000/api/profile",        // Update user profile
+  deleteOne: "http://localhost:5000/api/profile/:id", // Delete one user
+  deleteAll: "http://localhost:5000/api/profile",    // Delete all users
 }
+
 
 let product = {
     get:"http://localhost:5000/api/products",

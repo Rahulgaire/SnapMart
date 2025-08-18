@@ -1,44 +1,24 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import Cookies from 'js-cookie';
+import { AuthContext } from "../context/AuthProvider";
 const LoginForm = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: ""
-  });
-
-  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+  const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post("https://snapmart-backend.onrender.com/auth/user/login", formData);
-      console.log(res.data);
-      if (res.status === 200) {
-        toast.success("Login successful!");
-        localStorage.setItem("token", res.data.token); // Assuming token is in res.data.token
-        if (res?.data?.role === "admin") {
-          navigate("/admin");
-        } else {
-          navigate("/");
-        }
-      } else {
-        toast.error("Login failed. Try again.");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error(` ${error.response?.data?.message || error.message}`);
-    }
+    login(formData);
   };
 
   return (

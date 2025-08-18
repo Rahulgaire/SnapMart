@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Label } from "@/components/ui/label";
@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
 import Verifyotp from "./Verifyotp";
+import { AuthContext, AuthProvider } from "../context/AuthProvider";
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
@@ -18,8 +19,7 @@ const Register = () => {
     confirmPassword: "",
   });
   const [page,setPage] = useState("register");
-  const navigate = useNavigate();
-
+  const {register} = useContext(AuthContext)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -33,32 +33,7 @@ const Register = () => {
       return;
     }
 
-    try {
-      setLoading(true);
-      const res = await axios.post(
-        "https://snapmart-backend.onrender.com/auth/user/register",
-        {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-        }
-      );
-
-      if (res.status === 201) {
-        toast.success("Registration successful!");
-        setPage("verify");
-      } else {
-        toast.error("Registration failed. Please try again.");
-      }
-      setPage("verify");
-    } catch (error) {
-      console.log(error)
-      toast.error(
-        `${error?.response?.data?.message || error.message}`
-      );
-    } finally {
-      setLoading(false);
-    }
+    register(formData,setLoading,setPage)
   };
 
   return (

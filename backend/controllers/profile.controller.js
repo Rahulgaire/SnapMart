@@ -71,4 +71,31 @@ const deleteProfile = async (req, res) => {
   }
 };
 
-module.exports = {getProfile, updateProfile, deleteProfile};
+const deleteAllUsers = async (req, res) => {
+  try {
+    const delUser = await User.deleteMany();
+
+    // deleteMany() always returns an object like: { acknowledged: true, deletedCount: X }
+    // It never returns null, so !delUser will not work as expected.
+    
+    if (delUser.deletedCount === 0) {
+      return res.status(404).json({
+        message: "No users available to delete"
+      });
+    }
+
+    return res.status(200).json({
+      message: "All users deleted successfully",
+      deletedCount: delUser.deletedCount
+    });
+
+  } catch (error) {
+    console.error("Error deleting users:", error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      error: error.message
+    });
+  }
+};
+
+module.exports = {getProfile, updateProfile, deleteProfile,deleteAllUsers};
