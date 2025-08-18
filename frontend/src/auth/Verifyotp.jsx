@@ -16,7 +16,7 @@ const Verifyotp = ({ email = "user@example.com", onVerified }) => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:5000/auth/user/verify-otp",
+        "https://snapmart-backend.onrender.com/auth/user/verify-otp",
         {
           email,
           otpCode,

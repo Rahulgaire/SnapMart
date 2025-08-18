@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("token") || Cookies.get("token");
     if (token) {
       axios
-        .get("http://localhost:5000/api/profile", {
+        .get("https://snapmart-backend.onrender.com/api/profile", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => setUser(res.data))
@@ -24,11 +24,11 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const register = async (formData,setLoading,setPage) => {
+  const register = async (formData, setLoading, setPage) => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:5000/auth/user/register",
+        "auth/user/register",
         {
           name: formData.name,
           email: formData.email,
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (formData) => {
     try {
-      const res = await axios.post("http://localhost:5000/auth/user/login", formData);
+      const res = await axios.post("https://snapmart-backend.onrender.com/auth/user/login", formData);
       if (res.status === 200) {
         toast.success("Login successful!");
         setUser(res.data.user || { email: formData.email, role: res.data.role });
@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout,register }}>
+    <AuthContext.Provider value={{ user, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );
