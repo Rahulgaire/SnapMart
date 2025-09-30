@@ -21,7 +21,8 @@ app.use(
       "http://localhost:5173",
       "http://localhost:3000",
       "https://snapmart-ayll.onrender.com/",
-      "https://snapmart-backend.onrender.com/"
+      "https://snapmart-backend.onrender.com/",
+      "*"
     ],
     credentials: true,
   })

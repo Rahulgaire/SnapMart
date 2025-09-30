@@ -53,7 +53,7 @@ function Contact() {
   return (
     <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 py-16 bg-gradient-to-tr from-blue-50 to-blue-100">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
-        
+
         {/* Contact Info */}
         <div className="lg:w-1/2 flex flex-col gap-10 bg-white shadow-lg p-8 rounded-xl border border-blue-100">
           <div>

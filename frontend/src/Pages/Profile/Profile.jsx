@@ -1,7 +1,7 @@
 import React from "react";
 import { FaPen } from "react-icons/fa";
 import Modal from "./Modal";
-
+import owner from "../../../assets/owner.jpg";
 const Profile = () => {
   return (
     <div className="max-w-3xl mx-auto mt-10 bg-white shadow-xl rounded-2xl px-8 ">
@@ -13,7 +13,7 @@ const Profile = () => {
       <div className="flex items-center gap-6 relative mb-8">
         <div className="relative">
           <img
-            src="https://i.pravatar.cc/150?img=32"
+            src={owner}
             alt="Admin Avatar"
             className="w-28 h-28 rounded-full object-cover border-4 border-blue-500"
           />

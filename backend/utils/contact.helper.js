@@ -28,12 +28,19 @@ const sendContactEmail = async (contact) => {
     to: contact.email,
     subject: "Thank you for contacting us",
     html: `
-            Hi ${contact.name},
+           <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+      <p>Hi <strong>${contact.name}</strong>,</p>
 
-            Thank you for reaching out to SnapMart! We have received your message and will get back to you shortly.
+      <p>
+        Thank you for reaching out to <strong>SnapMart</strong>! <br/>
+        We have received your message and will get back to you shortly.
+      </p>
 
-            Best regards,
-            The SnapMart Team
+      <p style="margin-top:20px;">
+        Best regards, <br/>
+        <strong>The SnapMart Team</strong>
+      </p>
+    </div>
         `,
   };
   try {

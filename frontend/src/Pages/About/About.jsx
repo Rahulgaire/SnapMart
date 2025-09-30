@@ -1,13 +1,13 @@
 import React from "react";
 import Contact from "./Contact";
 import { Link } from "react-router-dom";
-
+import owner from "../../../assets/owner.jpg";
 // Example team members (you can customize!)
 const TEAM = [
   {
     name: "Rahul Gaire",
     role: "Founder & CEO",
-    image: "https://i.pravatar.cc/150?img=32",
+    image: owner,
     bio: "E-commerce enthusiast, passionate about building seamless shopping experiences.",
   },
   {

@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "auth/user/register",
+        "https://snapmart-backend.onrender.com/auth/user/register",
         {
           name: formData.name,
           email: formData.email,
