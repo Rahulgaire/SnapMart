@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { PiBuildingOfficeLight } from "react-icons/pi";
 import axios from "axios";
@@ -49,7 +49,9 @@ function Contact() {
       setLoading(false);
     }
   };
-
+    useEffect(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, []);
   return (
     <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 py-16 bg-gradient-to-tr from-blue-50 to-blue-100">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
