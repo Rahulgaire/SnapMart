@@ -17,7 +17,7 @@ const AllProducts = () => {
   // Fetch products on mount
   useEffect(() => {
     if (products.length === 0) fetchProducts();
-  }, [products.length, fetchProducts]);
+  }, []);
 
   // Filter products (optimized with useMemo)
   const filteredProducts = useMemo(() => {
