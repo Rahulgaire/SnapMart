@@ -24,9 +24,9 @@ const Verifyotp = ({ email = "user@example.com", onVerified }) => {
       );
       if (res.status === 200) {
         toast.success("OTP verified successfully!");
-        setTimeout(()=>{
+        setTimeout(() => {
           toast.success("User Registered Successfull")
-        },5000)
+        }, 5000)
         if (onVerified) onVerified();
       }
       navigate("/login");
@@ -69,9 +69,8 @@ const Verifyotp = ({ email = "user@example.com", onVerified }) => {
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-2 rounded-lg text-white font-semibold ${
-            loading ? "bg-blue-500 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
-          } transition`}
+          className={`w-full py-2 rounded-lg text-white font-semibold ${loading ? "bg-blue-500 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+            } transition`}
         >
           {loading ? "Verifying..." : "Verify OTP"}
         </button>

@@ -1,3 +1,4 @@
+require("dotenv").config({ quiet: true, override: true });
 const express = require("express");
 const connectDb = require("./config/db");
 const cookieParser = require("cookie-parser");
@@ -9,8 +10,8 @@ const commentRoutes = require("./routes/comments.routes");
 const cors = require("cors");
 const contactRoute = require("./routes/contact.routes");
 const Blogrouter = require("./routes/blog.routes");
+
 const app = express();
-require("dotenv").config();
 
 // Middleware
 app.use(cookieParser());
@@ -21,12 +22,13 @@ app.use(
       "http://localhost:5173",
       "http://localhost:3000",
       "https://snapmart-ayll.onrender.com",
-      "https://snapmart-backend.onrender.com"
+      "http://localhost:5000",
     ],
     credentials: true,
   })
 );
-//routes
+
+// Routes
 app.use("/api/cart", cartRoutes);
 app.use("/api/products", productRoutes);
 app.use("/auth/user", userRoutes);
@@ -34,19 +36,19 @@ app.use("/api/profile", profileRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api", contactRoute);
 app.use("/api", Blogrouter);
-const port = process.env.PORT || 3000;
 
+// Test route
 app.get("/", (req, res) => {
   res.send("<h1>Backend is running .....</h1>");
 });
 
-// Connect to the database and start the server
+// Start server
+const port = process.env.PORT || 3000;
+
 connectDb()
   .then(() => {
     app.listen(port, () => {
       console.log(`Server running in the port ${port}`);
     });
   })
-  .catch((err) => {
-    console.log("Server Error");
-  });
+  .catch(() => console.log("Server Error"));

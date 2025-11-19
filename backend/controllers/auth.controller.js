@@ -132,12 +132,16 @@ const login = async (req, res) => {
 };
 
 const logout = (req, res) => {
-  res.clearCookie("token", {
-    httpOnly: true,
-    sameSite: "strict",
-    secure: process.env.NODE_ENV === "production",
-  });
-  res.status(200).send("User logged out successfully");
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      sameSite: "strict",
+      secure: process.env.NODE_ENV === "production",
+    });
+     res.status(200).send("User logged out successfully");
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
+  }
 };
 
 const verifyOtp = async (req, res) => {

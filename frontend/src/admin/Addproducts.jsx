@@ -108,7 +108,7 @@ const Addproducts = () => {
           {/* Image Upload */}
           <div className="space-y-2">
             <Label>Product Image</Label>
-            <FileUpload onChange={handleImageChange} className='h-1'/>
+            <FileUpload onChange={handleImageChange} className='h-1' />
           </div>
 
           {/* Submit */}

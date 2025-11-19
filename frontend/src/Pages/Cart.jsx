@@ -2,6 +2,7 @@ import React from 'react';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
 const Cart = () => {
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 py-12 px-4 md:px-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">

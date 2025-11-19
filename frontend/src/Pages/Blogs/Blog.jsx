@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+axios.defaults.withCredentials = true;
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState(null);
@@ -8,8 +8,8 @@ const Blog = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get("https://snapmart-backend.onrender.com/api/blog");
-      setBlogs(response.data);
+      const res = await axios.get("https://snapmart-backend.onrender.com/api/blog");
+      setBlogs(res.data);
     } catch (error) {
       console.error("Error fetching blogs:", error);
     } finally {
@@ -18,20 +18,20 @@ const Blog = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0,{ behavior: "smooth" });
+    window.scrollTo(0, 0, { behavior: "smooth" });
     fetchBlogs();
   }, []);
 
   const openModal = (blog) => setSelectedBlog(blog);
   const closeModal = () => setSelectedBlog(null);
 
-  if (loading) {
-    return (
-      <div className="text-center py-20 text-lg text-gray-600">
-        Loading blogs...
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="text-center py-20 text-lg text-gray-600">
+  //       Loading blogs...
+  //     </div>
+  //   );
+  // }
 
   return (
     <>

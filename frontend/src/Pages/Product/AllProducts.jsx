@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState, useMemo } from "react";
 import { ProductsContext } from "../../context/ProductsContext";
 import { Link } from "react-router-dom";
 import { Pagination } from "../../components/ui/Pagination";
-
+import axios from 'axios'
+axios.defaults.withCredentials = true;
 const AllProducts = () => {
   const { products, fetchProducts, loading, error } = useContext(ProductsContext);
 

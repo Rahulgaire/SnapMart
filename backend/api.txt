@@ -1,48 +1,48 @@
 let user ={
-    get:"http://localhost:5000/auth/user/profile",
-    post:"http://localhost:5000/auth/user/login",
-    post:"http://localhost:5000/auth/user/register",
-    post:"http://localhost:5000/auth/user/logout",
-    post:"http://localhost:5000/auth/user/verify-otp",
+    get:"https://snapmart-backend.onrender.com/auth/user/profile",
+    post:"https://snapmart-backend.onrender.com/auth/user/login",
+    post:"https://snapmart-backend.onrender.com/auth/user/register",
+    post:"https://snapmart-backend.onrender.com/auth/user/logout",
+    post:"https://snapmart-backend.onrender.com/auth/user/verify-otp",
 }
 
 let userProfile = {
-  get: "http://localhost:5000/api/profile",          // Get user profile
-  patch: "http://localhost:5000/api/profile",        // Update user profile
-  deleteOne: "http://localhost:5000/api/profile/:id", // Delete one user
-  deleteAll: "http://localhost:5000/api/profile",    // Delete all users
+  get: "https://snapmart-backend.onrender.com/api/profile",          // Get user profile
+  patch: "https://snapmart-backend.onrender.com/api/profile",        // Update user profile
+  deleteOne: "https://snapmart-backend.onrender.com/api/profile/:id", // Delete one user
+  deleteAll: "https://snapmart-backend.onrender.com/api/profile",    // Delete all users
 }
 
 
 let product = {
-    get:"http://localhost:5000/api/products",
-    get:"http://localhost:5000/api/products/:id",   //single product
-    put:"http://localhost:5000/api/products/:id",
-    delete:"http://localhost:5000/api/products/:id",
-    post:"http://localhost:5000/api/products",
+    get:"https://snapmart-backend.onrender.com/api/products",
+    get:"https://snapmart-backend.onrender.com/api/products/:id",   //single product
+    put:"https://snapmart-backend.onrender.com/api/products/:id",
+    delete:"https://snapmart-backend.onrender.com/api/products/:id",
+    post:"https://snapmart-backend.onrender.com/api/products",
 }
 
 let cart = [
-    post:"http://localhost:5000/api/cart/add",  
-    post:"http://localhost:5000/api/cart/remove",  
-    post:"http://localhost:5000/api/cart/update",  
-    get:"http://localhost:5000/api/cart"
+    post:"https://snapmart-backend.onrender.com/api/cart/add",  
+    post:"https://snapmart-backend.onrender.com/api/cart/remove",  
+    post:"https://snapmart-backend.onrender.com/api/cart/update",  
+    get:"https://snapmart-backend.onrender.com/api/cart"
 ]
 
 let productComments = {
-    post:"http://localhost:5000/api/comments/",
-    get:"http://localhost:5000/api/comments/:productId",
-    delete:"http://localhost:5000/api/comments/:commentId"
+    post:"https://snapmart-backend.onrender.com/api/comments/",
+    get:"https://snapmart-backend.onrender.com/api/comments/:productId",
+    delete:"https://snapmart-backend.onrender.com/api/comments/:commentId"
 }
 
 let contact = {
-    get:"http://localhost:5000/api/contact",
-    post:"http://localhost:5000/api/contact"
+    get:"https://snapmart-backend.onrender.com/api/contact",
+    post:"https://snapmart-backend.onrender.com/api/contact"
 }
 let blog = {
-    get:"http://localhost:5000/api/blog",
-    delete:"http://localhost:5000/api/blog/:id",
-    post:"http://localhost:5000/api/blog"
+    get:"https://snapmart-backend.onrender.com/api/blog",
+    delete:"https://snapmart-backend.onrender.com/api/blog/:id",
+    post:"https://snapmart-backend.onrender.com/api/blog"
 }
 
 

@@ -15,7 +15,7 @@ import { PageNotFound } from "./Pages/PageNotFound";
 import Support from "./admin/Support";
 import Dashboard from "./admin/Dashboard";
 import Contact from "./Pages/About/Contact";
-
+import ProtectedRoutes from "./protected/ProtectedRoutes";
 // ✅ Lazy-loaded (big) pages
 const AllProducts = lazy(() => import("./Pages/Product/AllProducts"));
 const Blog = lazy(() => import("./Pages/Blogs/Blog"));
@@ -36,7 +36,11 @@ const App = () => {
       {/* ✅ Wrap lazy-loaded components in Suspense */}
       <Suspense fallback={<div className="text-center p-8">Loading...</div>}>
         <Routes>
-          <Route path="/admin/*" element={<Dashboard />} />
+          <Route path="/admin/*" element={
+            <ProtectedRoutes role="admin">
+            <Dashboard />
+          </ProtectedRoutes>
+            } />
           <Route path="/" element={<Home />} />
           <Route path="/support" element={<Support />} />
           <Route path="*" element={<PageNotFound />} />

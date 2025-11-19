@@ -1,8 +1,9 @@
 import React, { createContext, useState } from 'react';
-
+import axios from 'axios'
+axios.defaults.withCredentials = true;
 // 1. Create context
 export const ProductsContext = createContext();
-
+import toast from "react-hot-toast";
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -12,10 +13,9 @@ export const ProductsProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("https://snapmart-backend.onrender.com/api/products");
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Failed to fetch products");
-      setProducts(data.products || []);
+      const res = await axios.get("https://snapmart-backend.onrender.com/api/products");
+      if (res.statusText !== "OK") throw new Error(res.message || "Failed to fetch products");
+      setProducts(res.data.products || []);
     } catch (err) {
       console.error("Error fetching products:", err);
       setError(err.message);

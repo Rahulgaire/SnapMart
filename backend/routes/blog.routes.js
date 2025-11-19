@@ -2,10 +2,10 @@ const {createBlog, getAllBlogs, deleteOneBlog} = require('../controllers/blog.co
 const express = require('express');
 const Blogrouter = express.Router();
 const  authentication = require('../middleware/authentication.middleware');
-const uploadSingleImage = require('../middleware/upload.middleware');
+const uploadSingleImage = require('../helper/upload.helper');
+const {allowedRoles} = require('../middleware/roleAccess')
 
 Blogrouter.get('/blog', getAllBlogs);
-Blogrouter.post('/blog', authentication, uploadSingleImage('image'), createBlog);
-Blogrouter.delete('/blog/:id', deleteOneBlog);
-
+Blogrouter.post('/blog', authentication,allowedRoles('admin'), uploadSingleImage('image'), createBlog);
+Blogrouter.delete('/blog/:id',authentication,allowedRoles('admin'), deleteOneBlog);
 module.exports = Blogrouter;

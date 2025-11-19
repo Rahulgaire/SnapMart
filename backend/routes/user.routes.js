@@ -1,10 +1,18 @@
-const express = require('express');
-const authRouter = express.Router();
-const {login, register,logout,verifyOtp, getAllUsers} = require('../controllers/auth.controller');
+const express = require("express");
+const {
+    login,
+    register,
+  logout,
+  verifyOtp,
+  getAllUsers,
+} = require("../controllers/auth.controller");
+const {allowedRoles} = require("../middleware/roleAccess")
 
-authRouter.post('/login', login);
-authRouter.post('/register', register);
-authRouter.post('/logout', logout);
-authRouter.post('/verify-otp', verifyOtp);
-authRouter.get('/users', getAllUsers);
+const authRouter = express.Router();
+authRouter.post("/login", login);
+authRouter.post("/register", register);
+authRouter.post("/logout", logout);
+authRouter.post("/verify-otp", verifyOtp);
+authRouter.get("/users", allowedRoles('admin'), getAllUsers);
+
 module.exports = authRouter;

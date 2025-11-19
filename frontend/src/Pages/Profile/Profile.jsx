@@ -2,6 +2,7 @@ import React from "react";
 import { FaPen } from "react-icons/fa";
 import Modal from "./Modal";
 import owner from "../../../assets/owner.jpg";
+
 const Profile = () => {
   return (
     <div className="max-w-3xl mx-auto mt-10 bg-white shadow-xl rounded-2xl px-8 ">

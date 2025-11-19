@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect,useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
+import axios from "axios";
 import {
   Navbar,
   NavBody,
@@ -12,8 +13,11 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import { AuthContext } from "../context/AuthProvider";
+axios.defaults.withCredentials = true;
 
 export function NavbarDemo() {
+  const { user,logout } = useContext(AuthContext);
   const navItems = [
     { name: "Home", link: "/" },
     { name: "Product", link: "/products" },
@@ -56,9 +60,15 @@ export function NavbarDemo() {
             <Link to="/profile" title="Profile">
               <FaUser className="w-5 h-5 text-white hover:text-gray-200" />
             </Link>
+            {user ? 
+            <Link to="/login">
+              <NavbarButton variant="secondary"
+              onClick={logout}>Logout</NavbarButton>
+            </Link>:
             <Link to="/login">
               <NavbarButton variant="secondary">Login</NavbarButton>
             </Link>
+            }
             <Link to="/contact">
               <NavbarButton variant="primary">Book a Call</NavbarButton>
             </Link>
@@ -99,6 +109,17 @@ export function NavbarDemo() {
             </div>
 
             <div className="flex flex-col gap-4 mt-4">
+              {
+                user ? <Link to="/login">
+                <NavbarButton
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full"
+                >
+                  Logout
+                </NavbarButton>
+              </Link>
+              :
               <Link to="/login">
                 <NavbarButton
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -108,6 +129,7 @@ export function NavbarDemo() {
                   Login
                 </NavbarButton>
               </Link>
+              }
               <Link to="/contact">
                 <NavbarButton
                   onClick={() => setIsMobileMenuOpen(false)}

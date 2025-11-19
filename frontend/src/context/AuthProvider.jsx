@@ -4,24 +4,28 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+axios.defaults.withCredentials = true;
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+
   const navigate = useNavigate();
-  console.log(user)
+  // console.log(user)
   // Optional: load user from token on page refresh
   useEffect(() => {
-    const token = localStorage.getItem("token") || Cookies.get("token");
-    if (token) {
-      axios
-        .get("https://snapmart-backend.onrender.com/api/profile", {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => setUser(res.data))
-        .catch(() => setUser(null));
-    }
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get("https://snapmart-backend.onrender.com/api/profile", {
+          withCredentials: true,
+        });
+        setUser(res.data.user);
+      } catch (err) {
+        setUser(null);
+      }
+    };
+    fetchUser();
   }, []);
 
   const register = async (formData, setLoading, setPage) => {
@@ -54,7 +58,12 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (formData) => {
     try {
-      const res = await axios.post("https://snapmart-backend.onrender.com/auth/user/login", formData);
+      const res = await axios.post("https://snapmart-backend.onrender.com/auth/user/login",
+        formData,
+        { withCredentials: true }
+      );
+      console.log(res);
+
       if (res.status === 200) {
         toast.success("Login successful!");
         setUser(res.data.user || { email: formData.email, role: res.data.role });
@@ -76,10 +85,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
-    Cookies.remove("token");
-    setUser(null);
-    navigate("/login");
+    try {
+      const res = axios.post("https://snapmart-backend.onrender.com/auth/user/logout", {}, { withCredentials: true });
+      setUser(null);
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout Error:", error);
+    }
   };
 
   return (
