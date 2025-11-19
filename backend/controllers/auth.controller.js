@@ -120,7 +120,8 @@ const login = async (req, res) => {
       .cookie("token", jwtToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production", // secure in production only
-        sameSite: "strict",
+        sameSite: "none",
+        secure: true,
         maxAge: 24 * 60 * 60 * 1000, // 1 day
       })
       .status(200)

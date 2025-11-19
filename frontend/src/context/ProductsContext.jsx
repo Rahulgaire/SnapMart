@@ -13,7 +13,10 @@ export const ProductsProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get("https://snapmart-backend.onrender.com/api/products");
+      const res = await axios.get("https://snapmart-backend.onrender.com/api/products",
+        { withCredentials: true }
+      );
+      console.log(res)
       if (res.statusText !== "OK") throw new Error(res.message || "Failed to fetch products");
       setProducts(res.data.products || []);
     } catch (err) {
