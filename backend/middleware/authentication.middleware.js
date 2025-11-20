@@ -19,10 +19,11 @@ const authentication =  (req, res, next) => {
     try {
         const authHeader = req.headers.authorization
         let token
-        if(authHeader && authHeader.startsWith('Bearer')){
+        if(authHeader && authHeader.startsWith('Bearer ')){
             token = authHeader.split(' ')[1]
         }
-        else{
+        
+        if(!token){
             token = req.cookies.token
         }
 
@@ -31,6 +32,7 @@ const authentication =  (req, res, next) => {
                 message:"Unauthorized: No token provided"
             })
         }
+
         const decoded = jwt.verify(token,process.env.JWT_SECRET)
         req.user = decoded;
         next()

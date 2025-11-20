@@ -1,112 +1,46 @@
 let user ={
-    get:"https://snapmart-backend.onrender.com/auth/user/profile",
-    post:"https://snapmart-backend.onrender.com/auth/user/login",
-    post:"https://snapmart-backend.onrender.com/auth/user/register",
-    post:"https://snapmart-backend.onrender.com/auth/user/logout",
-    post:"https://snapmart-backend.onrender.com/auth/user/verify-otp",
+    get:"http://localhost:5000/auth/user/profile",
+    post:"http://localhost:5000/auth/user/login",
+    post:"http://localhost:5000/auth/user/register",
+    post:"http://localhost:5000/auth/user/logout",
+    post:"http://localhost:5000/auth/user/verify-otp",
 }
 
 let userProfile = {
-  get: "https://snapmart-backend.onrender.com/api/profile",          // Get user profile
-  patch: "https://snapmart-backend.onrender.com/api/profile",        // Update user profile
-  deleteOne: "https://snapmart-backend.onrender.com/api/profile/:id", // Delete one user
-  deleteAll: "https://snapmart-backend.onrender.com/api/profile",    // Delete all users
+  get: "http://localhost:5000/api/profile",          // Get user profile
+  patch: "http://localhost:5000/api/profile",        // Update user profile
+  deleteOne: "http://localhost:5000/api/profile/:id", // Delete one user
+  deleteAll: "http://localhost:5000/api/profile",    // Delete all users
 }
 
 
 let product = {
-    get:"https://snapmart-backend.onrender.com/api/products",
-    get:"https://snapmart-backend.onrender.com/api/products/:id",   //single product
-    put:"https://snapmart-backend.onrender.com/api/products/:id",
-    delete:"https://snapmart-backend.onrender.com/api/products/:id",
-    post:"https://snapmart-backend.onrender.com/api/products",
+    get:"http://localhost:5000/api/products",
+    get:"http://localhost:5000/api/products/:id",   //single product
+    put:"http://localhost:5000/api/products/:id",
+    delete:"http://localhost:5000/api/products/:id",
+    post:"http://localhost:5000/api/products",
 }
 
 let cart = [
-    post:"https://snapmart-backend.onrender.com/api/cart/add",  
-    post:"https://snapmart-backend.onrender.com/api/cart/remove",  
-    post:"https://snapmart-backend.onrender.com/api/cart/update",  
-    get:"https://snapmart-backend.onrender.com/api/cart"
+    post:"http://localhost:5000/api/cart/add",  
+    post:"http://localhost:5000/api/cart/remove",  
+    post:"http://localhost:5000/api/cart/update",  
+    get:"http://localhost:5000/api/cart"
 ]
 
 let productComments = {
-    post:"https://snapmart-backend.onrender.com/api/comments/",
-    get:"https://snapmart-backend.onrender.com/api/comments/:productId",
-    delete:"https://snapmart-backend.onrender.com/api/comments/:commentId"
+    post:"http://localhost:5000/api/comments/",
+    get:"http://localhost:5000/api/comments/:productId",
+    delete:"http://localhost:5000/api/comments/:commentId"
 }
 
 let contact = {
-    get:"https://snapmart-backend.onrender.com/api/contact",
-    post:"https://snapmart-backend.onrender.com/api/contact"
+    get:"http://localhost:5000/api/contact",
+    post:"http://localhost:5000/api/contact"
 }
 let blog = {
-    get:"https://snapmart-backend.onrender.com/api/blog",
-    delete:"https://snapmart-backend.onrender.com/api/blog/:id",
-    post:"https://snapmart-backend.onrender.com/api/blog"
+    get:"http://localhost:5000/api/blog",
+    delete:"http://localhost:5000/api/blog/:id",
+    post:"http://localhost:5000/api/blog"
 }
-
-
-
-
- db.blogs.insertMany([
-  {
-    title: "The Secret to Perfectly Crunchy Salted Chips",
-    desc: "Discover how we make our salted chips irresistible and why they’re a customer favorite at SnapMart.",
-    img: "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  },
-  {
-    title: "Hydration Hacks: Why Mineral Water is a Must-Have",
-    desc: "Learn the benefits of mineral water and how SnapMart ensures premium quality in every bottle.",
-    img: "https://plus.unsplash.com/premium_photo-1723629616202-bf20e5133e59?q=80&w=899&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  },
-  {
-    title: "Alphonso Mangoes: The King of Fruits at Your Doorstep",
-    desc: "Everything you need to know about our top-selling seasonal mangoes—fresh, juicy, and handpicked.",
-    img: "https://images.unsplash.com/photo-1669207334420-66d0e3450283?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  },
-  {
-    title: "Fresh Bananas Daily: From Farm to SnapMart",
-    desc: "SnapMart brings you premium bananas harvested daily to keep your family healthy and energized.",
-    img: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=327&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  },
-  {
-    title: "Brown Bread Benefits: A Healthier Breakfast Choice",
-    desc: "Start your mornings with the goodness of fiber-rich brown bread available now at SnapMart.",
-    img: "https://media.istockphoto.com/id/1420937092/photo/brown-bread.webp?a=1&b=1&s=612x612&w=0&k=20&c=B7F__YXV3hFEQUrQUDcotJ-I1zqhGimSb1VTTo4kaSU="
-  },
-  {
-    title: "Organic Tomatoes for Your Daily Nutrition",
-    desc: "Our tomatoes are farm-fresh, organic, and perfect for every meal—available exclusively at SnapMart.",
-    img: "https://images.unsplash.com/photo-1509963906410-fceef97f22f8?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dG9tYXRvZXN8ZW58MHx8MHx8fDA%3D"
-  },
-  {
-    title: "Green Tea: Detox Naturally with SnapMart’s Selection",
-    desc: "Explore our best-selling green teas that are rich in antioxidants and flavor.",
-    img: "https://images.unsplash.com/photo-1701520839071-55bdfe64c5ed?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Z3JlZW4lMjB0ZWF8ZW58MHx8MHx8fDA%3D"
-  },
-  {
-    title: "Instant Noodles: Quick, Tasty, and Always in Stock",
-    desc: "Busy life? Our top-rated instant noodles are here to rescue your hunger pangs.",
-    img: "https://images.unsplash.com/photo-1661511826111-5ec87d02f99f?q=80&w=423&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  },
-  {
-    title: "Dry Fruits Gift Boxes Now Available!",
-    desc: "Perfect for every occasion—SnapMart’s dry fruits collection is healthy and elegant.",
-    img: "https://images.unsplash.com/photo-1640010714651-012b498ef57f?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  },
-  {
-    title: "Fresh Milk Everyday: Direct from Local Dairies",
-    desc: "We source milk directly from trusted farms to ensure quality and freshness.",
-    img: "https://images.unsplash.com/photo-1576186726115-4d51596775d1?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d2hvbGUlMjBtaWxrfGVufDB8fDB8fHww"
-  },
-  {
-    title: "Cold Coffee Season Is Here!",
-    desc: "Beat the heat with our ready-to-drink cold coffee, now trending at SnapMart.",
-    img: "https://images.unsplash.com/photo-1635928056610-4f423e1c87f2?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  },
-  {
-    title: "New at SnapMart: Gourmet Cheese Varieties",
-    desc: "From mozzarella to cheddar, our cheese range is perfect for your next recipe!",
-    img: "https://images.unsplash.com/photo-1695606452858-39038806b143?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  }
-]);

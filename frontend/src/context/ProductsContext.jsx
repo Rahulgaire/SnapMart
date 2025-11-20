@@ -16,7 +16,7 @@ export const ProductsProvider = ({ children }) => {
       const res = await axios.get("https://snapmart-backend.onrender.com/api/products",
         { withCredentials: true }
       );
-      console.log(res)
+      // console.log(res)
       if (res.statusText !== "OK") throw new Error(res.message || "Failed to fetch products");
       setProducts(res.data.products || []);
     } catch (err) {

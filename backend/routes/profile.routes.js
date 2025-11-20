@@ -9,7 +9,7 @@ const {
 const {allowedRoles} = require("../middleware/roleAccess")
 const profileRouter = express.Router();
 
-profileRouter.get("/", authenticate, allowedRoles('user', 'admin'), getProfile);
+profileRouter.get("/:email", authenticate, allowedRoles('user', 'admin'), getProfile);
 profileRouter.patch("/", authenticate, allowedRoles('user', 'admin'), updateProfile);
 profileRouter.delete("/:id", authenticate, allowedRoles('admin'), deleteProfile);
 profileRouter.delete("/", authenticate, allowedRoles('admin'), deleteAllUsers);

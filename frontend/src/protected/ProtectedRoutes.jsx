@@ -1,26 +1,22 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { Navigate } from "react-router-dom";
-
+import toast from "react-hot-toast";
 const ProtectedRoutes = ({ children, role }) => {
   const { user } = useContext(AuthContext);
 
-  // 1️⃣ If not logged in
+  // Not logged in
   if (!user) {
     return <Navigate to="/login" replace />;
   }
 
-  // 2️⃣ If route requires ADMIN only
+  // If the route requires ONLY admin access
   if (role === "admin" && user.role !== "admin") {
-    return <Navigate to="/" replace />; // block normal user
+    toast.error("Access denied. Admins only.");
+    return <Navigate to="/" replace />;
   }
 
-  // 3️⃣ If route requires USER only
-  if (role === "user" && user.role !== "user") {
-    return <Navigate to="/admin" replace />; // block admin
-  }
-
-  // 4️⃣ Both roles allowed → simply render page
+  // Admin has access to everything automatically → GOOD!
   return children;
 };
 

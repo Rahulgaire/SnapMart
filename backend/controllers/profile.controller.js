@@ -3,12 +3,13 @@ const User = require("../model/user.model");
 const uploadToCloudinary = require("../config/cloudinary");
 const getProfile = async (req, res) => {
    try {
-     const id = req.id;
-    const user = await User.findOne({ _id: id });
+    const {email}  = req.params;
+    const user = await User.findOne({ email: email });
    if(!user) {
         return res.status(404).send("User not found");
     }
     return res.status(200).json({
+      user:{
         name: user.name,
         email: user.email,
         role: user.role,
@@ -16,7 +17,8 @@ const getProfile = async (req, res) => {
         cart: user.cart,
         img:user.img,
         createdAt: user.createdAt,
-    });
+    }
+  });
    } catch (error) {
     res.status(500).json({
       message:error.message

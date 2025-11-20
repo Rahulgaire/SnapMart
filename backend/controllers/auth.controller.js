@@ -113,16 +113,17 @@ const login = async (req, res) => {
     const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "1d",
     }); // optional expiry
-    console.log(jwtToken);
+    // console.log(jwtToken);
 
     // Send cookie with httpOnly flag
     return res
       .cookie("token", jwtToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // secure in production only
+        // secure: process.env.NODE_ENV === "production", // secure in production only
         sameSite: "none",
         secure: true,
-        maxAge: 24 * 60 * 60 * 1000, // 1 day
+        path:'/'
+        // maxAge: 24 * 60 * 60 * 1000, // 1 day
       })
       .status(200)
       .json({ message: "User logged in successfully", role: existedUser.role ,token:jwtToken,isVerified:existedUser.isVerified});

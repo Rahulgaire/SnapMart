@@ -3,12 +3,11 @@ const User = require('../model/user.model');
 
 const createComment = async (req, res) => {
   try {
-    const userId = req.id; 
-    if (!userId) {
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
+    const userId = req.user.id; 
     const { productId, text } = req.body;
-
+    if (!productId || !text) {
+      return res.status(400).json({ message: 'Product ID and text are required' });
+    }
     // Validate user existence
     const user = await User.findById(userId);
     if (!user) {
@@ -62,7 +61,6 @@ const getCommentsByProduct = async (req, res) => {
 const deleteComment = async (req, res) => {
     try {
         const { commentId } = req.params;
-        const userId = req.id; // Assuming user ID is available in req.user
     
         // Validate user ID and comment ID
         if (!userId || !commentId) {
@@ -73,13 +71,7 @@ const deleteComment = async (req, res) => {
         const comment = await Comment.findById(commentId);
         if (!comment) {
         return res.status(404).json({ message: 'Comment not found' });
-        }
-    
-        // Check if the user is authorized to delete the comment
-        if (comment.userId.toString() !== userId) {
-        return res.status(403).json({ message: 'You are not authorized to delete this comment' });
-        }
-    
+        }    
         // Delete the comment
         await Comment.findByIdAndDelete(commentId);
         res.status(200).json({ message: 'Comment deleted successfully' });
