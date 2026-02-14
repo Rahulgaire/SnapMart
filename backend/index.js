@@ -1,13 +1,13 @@
 require("dotenv").config({ quiet: true, override: true });
 const express = require("express");
-const connectDb = require("./config/db");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const connectDb = require("./config/db");
 const userRoutes = require("./routes/user.routes");
 const cartRoutes = require("./routes/cart.routes");
 const productRoutes = require("./routes/product.routes");
 const profileRoutes = require("./routes/profile.routes");
 const commentRoutes = require("./routes/comments.routes");
-const cors = require("cors");
 const contactRoute = require("./routes/contact.routes");
 const Blogrouter = require("./routes/blog.routes");
 
